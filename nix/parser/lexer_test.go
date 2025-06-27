@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"io/ioutil"
+	"os"
 	"sort"
 	"testing"
 
@@ -13,7 +13,7 @@ import (
 func TestLexOne(t *testing.T) {
 	skipWithoutNixPath(t)
 	path := attrsets
-	data, err := ioutil.ReadFile(path)
+	data, err := os.ReadFile(path)
 	e.Exit(err)
 	r, err := lex(data, path)
 	t.Log(r.tokens)
@@ -45,10 +45,10 @@ func TestLexAll(t *testing.T) {
 
 func BenchmarkLex(b *testing.B) {
 	path := allPackages
-	data, err := ioutil.ReadFile(path)
+	data, err := os.ReadFile(path)
 	e.Exit(err)
 
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		_, err = lex(data, path)
 		assert.NoError(b, err)
 	}

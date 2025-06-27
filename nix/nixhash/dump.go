@@ -2,7 +2,6 @@ package nixhash
 
 import (
 	"io"
-	"io/ioutil"
 	"os"
 	"path"
 	"sort"
@@ -51,7 +50,7 @@ func dumpContents(p string, size int64, sink Sink) {
 }
 
 func readDirectory(p string) []string {
-	fis, err := ioutil.ReadDir(p)
+	fis, err := os.ReadDir(p)
 	internal.Check(err)
 	names := make([]string, 0, len(fis))
 	for _, fi := range fis {

@@ -8,7 +8,7 @@ func Panic(v string) {
 	panic(Error(v))
 }
 
-func Panicf(format string, a ...interface{}) {
+func Panicf(format string, a ...any) {
 	Panic(fmt.Sprintf(format, a...))
 }
 

@@ -7,12 +7,14 @@ import (
 )
 
 // Value is one of: int, float64, string, URI, Path, List, Set
-type Value interface{}
+type Value any
 
-type URI string
-type Path string
-type List []*Expression
-type Set map[Sym]*Expression
+type (
+	URI  string
+	Path string
+	List []*Expression
+	Set  map[Sym]*Expression
+)
 
 func (set Set) Bind1(sym Sym, x *Expression) {
 	if _, ok := set[sym]; ok {
